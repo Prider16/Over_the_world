@@ -20,6 +20,9 @@ public:
 	AOTW_Character();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	UPROPERTY(BlueprintReadWrite)
+	bool isCrouched = false;
 
 protected:
 	virtual void BeginPlay() override;
@@ -32,6 +35,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	UInputAction* JumpAction;
+
+	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
+	UInputAction* CrouchAction;
 
 	UPROPERTY(EditAnywhere, Category = "EnhancedInput")
 	UInputAction* LookAction;
@@ -48,5 +54,6 @@ protected:
 	void Move(const FInputActionValue& InputValue);
 	void Look(const FInputActionValue& InputValue);
 	void jump();
+	void crouch();
 
 };

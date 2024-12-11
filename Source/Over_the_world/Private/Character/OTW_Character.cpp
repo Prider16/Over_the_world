@@ -55,6 +55,8 @@ void AOTW_Character::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 		Input->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AOTW_Character::Move);
 
 		Input->BindAction(LookAction, ETriggerEvent::Triggered, this, &AOTW_Character::Look);
+
+		Input->BindAction(CrouchAction, ETriggerEvent::Triggered, this, &AOTW_Character::crouch);
 	}
 
 }
@@ -94,5 +96,19 @@ void AOTW_Character::Look(const FInputActionValue& InputValue)
 void AOTW_Character::jump()
 {
 	ACharacter::Jump();
+}
+
+void AOTW_Character::crouch()
+{
+	if (isCrouched)
+	{
+		isCrouched = false;
+		ACharacter::Crouch();
+	}
+	else
+	{
+		isCrouched = true;
+		ACharacter::Crouch();
+	}
 }
 
